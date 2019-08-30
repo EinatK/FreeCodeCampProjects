@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="reactJS documenation page for FCC project">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <title>ReactJS Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+
+
+</head>
+
+<body>
+    <main id="main-doc">
+        <nav id="navbar">
+            <header>ReactJS Documentation</header>
+            <a class="nav_link" href="#introduction">Introduction</a>
+            <a class="nav_link" href="#hello_world">Hello World</a>
+            <a class="nav_link" href="#introducing_jsx">Introducing JSX</a>
+            <a class="nav_link" href="#rendering_elements">Rendering Elements</a>
+            <a class="nav_link" href="#components_and_props">Components and Props</a>
+            <a class="nav_link" href="#state_and_lifecycle">State and Lifecycle</a>
+            <a class="nav_link" href="#handling_events">Handling Events</a>
+            <a class="nav_link" href="#conditional_rendering">Conditional Rendering</a>
+            <a class="nav_link" href="#lists_and_keys">Lists and Keys</a>
+            <a class="nav_link" href="#forms">Forms</a>
+            <a class="nav_link" href="#lifting_state_up">Lifting State Up</a>
+            <a class="nav_link" href="#compositio_vs_inheritance">Composition vs Inheritance</a>
+            <a class="nav_link" href="#thinking_in_react">Thinking In React</a>
+        </nav>
+        <section class="main-section" id="introduction">
+            <header>Introduction</header>
+            <p>
+                ReactJS is a JavaScript library for building user interfaces.
+                It is maintained by Facebook and a community of individual developers and companies.
+                It can be used as a base in the development of single page or mobile applications.
+                Complex React applications usually require the use of additional libraries for
+                state management, routing and interaction with an API.
+            </p>
+            <h4>Declarative</h4>
+            <p> React makes it painless to create interactive UIs. Once you learn it, you will be
+                able to deign simple views for each state in your application, and React will efficiently update and
+                render just the right components when your data changes.<br>
+                Declarative views make your code more predictable and easier to debug.</p>
+            <h4>Component-Based</h4>
+            <p>Build encapsulated components that manage their own state, then compose them to make complex UIs.
+                <br> Since component logic is written in JavaScript instead of templates, you can easily pass rich
+                data through your app and keep state out of the DOM.
+            </p>
+            <h4>Learn Once, Write Anywhere</h4>
+            <p>We don't make assumptions about the rest of your technology stack, so you can develop new features in
+                React without rewriting existing code. <br> React can also render on the server using <a
+                    href="https://nodejs.org/en/" target="_blank">Node</a> and
+                power mobile apps using <a href="https://facebook.github.io/react-native/" target="_blank">React
+                    Native</a></p>
+        </section>
+        <section class="main-section" id="hello_world">
+            <header>Hello World</header>
+            <h4>The smallest React example looks like this:</h4>
+            <pre class="code-wrapper"><code>
+    ReactDOM<span class="function-text">.render</span>(
+        <span class="html-tag">&lt<span class="html-tag-text">h1</span>&gt</span>Hello, World!<span class="html-tag">&lt/<span class="html-tag-text">h1</span>&gt,</span>
+    document<span class="function-text">.getElementById</span>(<span class="function-argument">'root'</span>)
+    );
+    </code></pre>
+            <p>It displays a heading saying "Hello, world!" on the page</p>
+            <span class="codepen-try"><a class="codepen-try" href="https://reactjs.org/redirect-to-codepen/hello-world"
+                    target="_blank"> Try
+                    it on CodePen!</a> </span>
+            <p>Click the link above to open an online editor. Feel free to make some changes, and see how they affect
+                the
+                output. Most pages in this guide will be editable examples like this one.</p>
+
+        </section>
+        <section class="main-section" id="introducing_jsx">
+            <header>Introducing JSX</header>
+            <h4>Consider this variable declaration:</h4>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">const</span> element = <span class="html-tag">&lt<span class="html-tag-text">h1</span>&gt</span>Hello, World!<span class="html-tag">&lt/<span class="html-tag-text">h1</span>&gt&semi;</span>
+    </code></pre>
+            <p>This funny tag syntax is neither a string nor HTML</p>
+            <p>It is called JSX, and it is a syntax extension to JavaScript. We recommend using it with React to
+                describe what the UI should look like. JSX may remind you of a template language, but it comes with the
+                full power of JavaScript</p>
+            <p>JSX produces React "elements". We will explore rendering them to the DOM in the next section. Here is the
+                basics of JSX necessary to get you started.</p>
+            <hr>
+            <h2>Why JSX?</h2>
+            <p> React embraces the fact that rendering logic is inherently coupled with out UI logic: how events are
+                handled, how the state changes over time, and how the data is prepared for display.</p>
+            <p>
+                Instead of artificially separating technologies by putting markup and logic in separate files, React
+                separates concerns with loosely coupled units called <strong>"components"</strong> that contain both.
+            </p>
+            <p>React doesn't require using JSX, but most people find it helpful as a visual aid when working with UI
+                inside the JavaScript code. It also allows React to show more useful error and warning messages.</p>
+            <p>With that out of the way, let's get started!</p>
+            <hr>
+            <h2>Embedding Expressions in JSX</h2>
+            <p>In the example below, we declare a variable called <span class="highlighted-text">name</span>
+                and then use it inside JSX by wrapping it in curly braces:</p>
+            <pre class="code-wrapper"><code>
+    <span class="highlighted-code">
+    <span class="variable-declaration">const</span> name = <span class="function-argument">'Josh Perez'&semi;</span>
+    <span class="variable-declaration">const</span> element = <span class="html-tag">&lt<span class="html-tag-text">h1</span>&gt</span>Hello, <span class="html-tag">{<span style="color:#f5f5f5;">name</span>}</span><span class="html-tag">&lt/<span class="html-tag-text">h1</span>&gt&semi;</span></span>
+
+    ReactDOM<span class="function-text">.render</span><span class="html-tag">(</span>
+    element<span class="html-tag">,</span>
+    document<span class="function-text">.getElementById</span>(<span class="function-argument">'root'</span>)
+    <span class="html-tag">);</span>
+    </code>
+</pre>
+            <p>You can put any valid JavaScript expression inside the curly braces in JSX. For example, <span
+                    class="highlighted-text javascript-style"> 2 + 2, user.firstName, formatName(user)</span> are all
+                valid JavaScript
+                expressions.</p>
+            <p>In the example below, we embed the result of calling a JavaScript function, <span
+                    class="highlighted-text javascript-style">formatName(user)</span>, into an <span
+                    class="highlighted-text">&lth1&gt</span> element</p>
+
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">function </span><span class="function-text">formatName<span class="html-tag">(<span style="color:#f5f5f5;">user</span>){</span> </span>
+        <span class="variable-declaration">return </span>user.firstName + <span class="function-argument"> ' ' </span> + user.lastName;
+    <span class="html-tag">}</span>
+        
+    <span class="variable-declaration">const</span> user = <span class="html-tag">{</span>
+        firstName<span class="html-tag">:</span><span class="function-argument">'Harper'</span><span class="html-tag">,</span>
+        lastName<span class="html-tag">:</span><span class="function-argument">'Perez'</span>
+    <span class="html-tag">}&semi;</span>
+
+    <span class="variable-declaration">const</span> element = <span class="html-tag">(</span>
+        <span class="html-tag">&lt<span class="html-tag-text">h1</span>&gt</span>
+        <span class="highlighted-code">
+            Hello, <span class="html-tag">{<span class="function-text">formatName</span>(<span style="color:#f5f5f5;">user</span>)}</span>!</span>
+        <span class="html-tag">&lt<span class="html-tag-text">/h1</span>&gt</span>
+    <span class="html-tag">)&semi;</span>
+
+    ReactDOM<span class="function-text">.render</span><span class="html-tag">(</span>
+        element<span class="html-tag">,</span>
+        document<span class="function-text">.getElementById</span>(<span class="function-argument">'root'</span>)
+    <span class="html-tag">);</span>
+            </code></pre>
+            <span class="codepen-try"><a class="codepen-try"
+                    href="https://reactjs.org/redirect-to-codepen/introducing-jsx" target="_blank"> Try
+                    it on CodePen!</a> </span>
+            <p>We split JSX over multiple lines for readability. While it isn't required, when doing this, we also
+                recommend wrapping it in parentheses to avoid pitfalls of automatic semicolon insertion.</p>
+            <hr>
+            <h2>JSX is an Expression Too</h2>
+            <p>After compilation, JSX expressions become regular JavaScript function calls and evaluate to JavaScript
+                objects.</p>
+            <p>This means that you can use JSX inside of <span class="highlighted-text">if</span> statements and <span
+                    class="highlighted-text">for</span>loops, assign it to variables, accept it as arguments, and return
+                it from functions.</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">function </span><span class="function-text">getGreeting<span class="html-tag">(<span style="color:#f5f5f5;">user</span>){</span> </span>
+    <span class="variable-declaration">if </span><span class="html-tag">(<spans style="color:#f5f5f5;">user</spans>){</span>
+    <span class="highlighted-code"><span class="variable-declaration">
+        return </span><span class="html-tag">&lt<span class="html-tag-text">h1</span>&gt</span>Hello, <span class="html-tag">{<span class="function-text">formatName</span>(<span style="color:#f5f5f5;">user</span>)}</span>!<span class="html-tag">&lt<span class="html-tag-text">/h1</span>&gt</span></span>
+    <span class="html-tag">}</span>
+    <span class="highlighted-code"><span class="variable-declaration">
+        return </span><span class="html-tag">&lt<span class="html-tag-text">h1</span>&gt</span>Hello, Stranger.<span class="html-tag">&lt<span class="html-tag-text">/h1</span>&gt</span></span>
+    <span class="html-tag">)&semi;</span>
+            </code></pre>
+            <hr>
+            <h2>Specifying Attributes with JSX</h2>
+            <p>You may use quotes to specify string literals as attributes:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">const</span> element = <span class="html-tag">&lt<span class="html-tag-text">div <span class="variable-declaration">tabIndex</span> </span>="<span class="function-argument">0</span>"&gt&lt<span class="html-tag-text">div</span>&gt&semi;</span>
+            </code></pre>
+            <p>You may also use curly braces to embed a JavaScript expression in an attribute:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">const</span> element = <span class="html-tag">&lt<span class="html-tag-text">img <span class="variable-declaration">src</span></span> = {<span class="html-tag-text">user.avatarUrl</span>}&gt&lt<span class="html-tag-text">img</span>&gt&semi;</span>
+            </code></pre>
+            <p>Don't put quotes around curly braces when embedding a JavaScript expression in an attribute. You should
+                either use quotes (for string values) or curly braces (for expressions), but not both in the same
+                attribute.</p>
+            <blockquote class="warning-box">
+                <h2>Warning:</h2>
+                <p>Since JSX is closer to JavaScript than to HTML, React DOM uses
+                    <span class="darker-yellow-highlighted-text">camelCase </span>property naming convention instead of
+                    HTML attribute
+                    names.</p>
+                <p>For example, <code class="darker-yellow-highlighted-text">class</code> becomes <code
+                        class="gray-highlighted-text">className</code>in JSX and <code
+                        class="darker-yellow-highlighted-text">tabindex</code> becomes <code
+                        class="gray-highlighted-text">tabIndex</code> </p>
+            </blockquote>
+            <hr>
+            <h2>Specifying Children with JSX</h2>
+            <p>If a tag is empty, you may close it immediately with <code class="highlighted-text">/&gt, </code>like
+                XML.
+            </p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">const</span> element = <span class="html-tag">&lt<span class="html-tag-text">img <span class="variable-declaration">src</span></span>= {<span class="html-tag-text">user.avatarUrl</span>} /&gt&semi;</span>
+            </code></pre>
+            <p>JSX tags may contain children:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">const</span> element <span class="html-tag"> = ( </span>
+    <span class="html-tag">&lt<span class="html-tag-text">div</span>&gt</span>
+        <span class="html-tag">&lt<span class="html-tag-text">h1</span>&gt</span>Hello!<span class="html-tag">&lt<span class="html-tag-text">/h1</span>&gt</span>
+        <span class="html-tag">&lt<span class="html-tag-text">h2</span>&gt</span>Good to see you here.<span class="html-tag">&lt<span class="html-tag-text">/h2</span>&gt</span>
+    <span class="html-tag">&lt<span class="html-tag-text">/div</span>&gt</span>
+    <span class="html-tag">)&semi;</span>
+            </code></pre>
+            <hr>
+            <h2>JSX Prevents Injection Attacks</h2>
+            <p>It is safe to embed user input in JSX:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">const </span>title = response.potentiallyMaliciousInput;
+    <span class="react-comment">// This is safe:</span>
+    <span class="variable-declaration">const </span>element = <span class="html-tag">&lt<span class="html-tag-text">h1</span>&gt{</span>title<span class="html-tag">}&lt<span class="html-tag-text">/h1</span>&gt</span>
+            </code></pre>
+            <p>By default, React DOM escapes any values embedded in JSX before rendering them.
+                Thus is ensures that you can never inject anything that's not explicitly written in your application.
+                Everything is converted to a string before being rendered. This helps prevent XSS(cross-site-scripting)
+                attacks.
+            </p>
+            <hr>
+            <h2>JSX Represents Objects</h2>
+            <p>Babel compiles JSX down to <code
+                    class="darker-yellow-highlighted-text">React.createElement() </code>calls.</p>
+            <p>These two examples are identical:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">const </span>element <span class="html-tag"> = ( </span>
+        <span class="html-tag">&lt<span class="html-tag-text">h1</span> <span class="variable-declaration">className</span>="<span class="function-argument">greeting</span>"&gt</span>
+            Hello,World!
+        <span class="html-tag">&lt<span class="html-tag-text">/h1</span>&gt</span>   
+    <span class="html-tag"> )&semi;</span>
+            </code></pre>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">const </span>element = React<span class="function-text">.createElement</span><span class="html-tag">(
+        <span class="function-argument">'h1'</span>,
+        {<span style="color:#f5f5f5;">className</span>: <span class="function-argument">'greeting'</span>},
+        <span class="function-argument">'Hello, world!'</span>
+    )&semi;</span>
+            </code></pre>
+            <p><code class="darker-yellow-highlighted-text">React.createElement() </code> performs a few checks to help
+                you write bug free code but essentially it creates an object like this:</p>
+            <pre class="code-wrapper"><code>
+    <span class="react-comment">// Note: this structure is simplified</span>
+    <span class="variable-declaration">const</span> element = <span class="html-tag">{
+    <span style="color:#f5f5f5">type</span>: <span class="function-argument">'h1'</span>
+    <span style="color:#f5f5f5">props</span>{
+        <span style="color:#f5f5f5">className</span>:<span class="function-argument">'greeting'</span>,
+        <span style="color:#f5f5f5">children</span>:<span class="function-argument">'Hello, world!'</span>,
+      }
+    }&semi;</span>
+            </code></pre>
+            <p>These objects are called "React Elements". You can think of them as descriptions of what you want to see
+                on the screen. React reads these objects and uses them to construct the DOM and keep it up do date.</p>
+            <blockquote class="warning-box">
+                <h2>Tip:</h2>
+                <p>We recommend using the <span class="gray-highlighted-text">"Babel" language definition</span> for
+                    your editor of choice so that both ES6 and JSX code is properly highlighted.</p>
+            </blockquote>
+        </section>
+        <section class="main-section" id="rendering_elements">
+            <header>Rendering Elements</header>
+            <h4>Elements are the smallest building blocks of React apps.</h4>
+            <p>An element describes what you see on the screen:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">const </span>element <span class="html-tag">= &lt<span class="html-tag-text">h1</span>&gt</span>Hello, world!<span class="html-tag">&lt<span class="html-tag-text">/h1</span>&gt&semi;</span>
+            </code></pre>
+            <p>Unlike browser DOM elements, React elements are plain objects, and are cheap to create.
+                React DOM takes care of updating the DOM to match the React elements.
+            </p>
+            <blockquote class="warning-box">
+                <h2>Note:</h2>
+                <p>One might confuse elements with a more widely known concept of "components".
+                    We will introduce components in the next section. Elements are what components
+                    are "made of", and we encourage you to read this section before jumping ahead.
+                </p>
+            </blockquote>
+            <hr>
+            <h2>Rendering an Element into the DOM</h2>
+            <p>Let's say there is a <code class="darker-yellow-highlighted-text">&ltdiv&gt</code> somewhere in your HTML
+                file:</p>
+            <pre class="code-wrapper"><code>
+    <span class="html-tag">&lt<span class="html-tag-text">div</span><span class="variable-declaration"> id</span>="<span class="function-argument">root</span>"&gt&lt/<span class="html-tag-text">div</span>&gt&semi;</span>
+                </code></pre>
+            <p>We call this a "root" DOM node because everything inside it will be managed by React DOM.</p>
+            <p>Applications built with just React usually have a single DOM node. If you are integrating React into an
+                existing app, you may have as many isolated root DOM nodes as you like.</p>
+            <p>To render a React element into a root DOM node, pass both to <code
+                    class="darker-yellow-highlighted-text">ReactDOM.render();</code></p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">const</span> element = <span class="html-tag">&lt<span class="html-tag-text">h1</span>&gt</span> Hello, world<span class="html-tag">&lt/<span class="html-tag">h1</span>&gt</span>&semi;
+    ReactDOM<span class="function-text">.render</span><span class="html-tag">(<span style="color: #f5f5f5";>element, document<span class="function-text">.getElementById</span></span>((<span class="function-argument">'root'</span>)&semi;</span>
+        </code></pre>
+            <span class="codepen-try"><a class="codepen-try"
+                    href="https://reactjs.org/redirect-to-codepen/rendering-elements/render-an-element" target="_blank">
+                    Try
+                    it on CodePen!</a> </span>
+            <p>It displays "Hello, world" on the page.</p>
+            <hr>
+            <h2>Updating the Rendered Element</h2>
+            <p>React elements are <span class="gray-highlighted-text">immutable</span>. Once you create an element, you
+                can't change its children or attributes. An element is like a single frame in a movie: it represents the
+                UI at a certain point in time.</p>
+            <p>With our knowledge so far, the only way to update the UI is to create a new element, and pass it to <code
+                    class="darker-yellow-highlighted-text">ReactDOM.render()</code>.</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">function </span><span class="function-text">tick</span><span class="html-tag">(){</span>
+        <span class="variable-declaration">const</span> element = <span class="html-tag">(
+            &lt<span class="html-tag-text">div</span>&gt
+                &lt<span class="html-tag-text">h1</span>&gt<span style="color:#f5f5f5">Hello, world!</span>&lt/<span class="html-tag-text">h1</span>&gt;
+                &lt<span class="html-tag-text">h2</span>&gt<span style="color: #f5f5f5">It is</span>{<span class="variable-declaration">new </span><span class="react-class">Date</span>().<span class="function-text">toLocaleTimeString</span>()}.&lt/<span class="html-tag-text">h2</span>&gt
+            &lt/<span class="html-tag-text">div</span>&gt
+        )&semi;
+        <span class="highlighted-code">
+        <span style="color:#f5f5f5">ReactDOM.</span><span class="function-text">render</span><span class="html-tag">(<span style="color:#f5f5f5">element, document<span class="function-text">.getElementById</span></span>(<span class="function-argument">'root'</span>))&semi;</span></span>
+    }
+
+    <span class="function-text">setInterval</span><span class="html-tag">(<span style="color:#f5f5f5">tick</span>, <span class="function-text">1000</span>)&semi;</span></span>
+        </code></pre>
+            <span class="codepen-try"><a class="codepen-try"
+                    href="https://reactjs.org/redirect-to-codepen/rendering-elements/update-rendered-element"
+                    target="_blank"> Try
+                    it on CodePen!</a> </span>
+            <p>It calls <code class="darker-yellow-highlighted-text">ReactDOM.render()</code> every second from <code
+                    class="gray-highlighted-text">setInterval()</code> callback.</p>
+            <blockquote class="warning-box">
+                <h2>Note:</h2>
+                <p>In practice, most React apps only call <code
+                        class="darker-yellow-highlighted-text">ReactDOM.render()</code> once. In the next sections we
+                    will learn how such code gets encapsulated into <span class="gray-highlighted-text">stateful
+                        components.</span></p>
+                <p>We recommend you don't skip topics because they are built on each other.</p>
+            </blockquote>
+            <hr>
+            <h2>React Only Updates What's Necessary</h2>
+            <p>React DOM compares the element and its children to the previous one, and only applies the DOM updates
+                necessary to bring the DOM to the desired state.
+            </p>
+            <p>You can verify by inspecting the <span class="gray-highlighted-text">last example</span> with the browser
+                tools:</p>
+            <img src="https://reactjs.org/granular-dom-updates-c158617ed7cc0eac8f58330e49e48224.gif" />
+
+            <p>Even though we create an element describing the whole UI tree on every tick, only the text node whose
+                contents has changed gets updated by React DOM.</p>
+            <p>In out experience, thinking about how the UI should look at any given moment rather than how to change it
+                over time eliminates a whole class of bugs.</p>
+        </section>
+        <section class="main-section" id="components_and_props">
+            <header>Components and Props</header>
+            <h4>Components let you split the UI into independent, reusable pieces, and think about each piece in
+                isolation. This section provides an introduction to the idea of components. You can find a more
+                <a href="https://reactjs.org/docs/react-component.html" target="_blank">
+                    <span class="gray-highlighted-text">detailed component API reference here.</span>
+                </a> </h4>
+            <p>Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called "props") and
+                return React elements describing what should appear on the screen.</p>
+            <hr>
+            <h2>Function and Class Components</h2>
+            <p>The simplest way to define a component is to write a JavaScript function:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">function</span><span class="function-text"> Welcome</span><span class="html-tag">(<span style="color:#f5f5f5">props</span>) { 
+        <span class="variable-declaration">return </span>&lt<span class="html-tag-text">h1</span>&gt<span style="color:#f5f5f5">Hello,</span>{<span style="color:#f5f5f5">props.name</span>}&lt/<span class="html-tag-text">h1</span>&gt&semi;
+    }</span>
+            </code></pre>
+            <p>This function is a valid React component because it accepts a single "props" (which stands for
+                properties) object argument with data and returns a React element. We call such components "function
+                components" because they are literally JavaScript functions.</p>
+            <p>You can also use ES6 class to define a component:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">class </span><span class="react-class">Welcome <span class="variable-declaration">extends </span> React.Component </span><span class="html-tag">{
+        <span class="function-text">render</span>() {
+            <span class="variable-declaration">return </span>&lt<span class="html-tag-text">h1</span>&gt<span style="color:#f5f5f5">Hello,</span>{<span style="color:#f5f5f5">props.name</span>}&lt/<span class="html-tag-text">h1</span>&gt&semi;   
+        }
+    }</span>
+        </code></pre>
+            <p>The above two components are equivalent from React's point of view.</p>
+            <p>Classes have some additional features that we will discuss later on. Until then, we will use function
+                components for the conciseness.</p>
+            <hr>
+            <h2>Rendering a Component</h2>
+            <p>Previously, we only encountered React elements that represent DOM tags:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">const </span>element = <span class="html-tag">&lt<span class="html-tag-text">div</span> /&gt&semi;</span>
+            </code></pre>
+            <p>However, elements can also represent user-defined components:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">const </span>element = <span class="html-tag">&lt<span class="html-tag-text">Welcome </span><span class="variable-declaration">name</span>=<span class="function-argument">"Sara"</span> /&gt&semi;</span>
+            </code></pre>
+            <p>When React sees an element representing a user-defined component, it passes JSX attributes to this
+                component as a single object. We call this object "props"</p>
+            <p>For example, this code renders "Hello, Sara" on the page:</p>
+            <pre class="code-wrapper"><code>
+                
+<span class="highlighted-code">
+    <span class="variable-declaration">function</span><span class="function-text"> Welcome</span><span class="html-tag">(<span style="color:#f5f5f5">props</span>) { </span></span>
+        <span class="variable-declaration">return </span><span class="html-tag">&lt<span class="html-tag-text">h1</span>&gt<span style="color:#f5f5f5">Hello,</span>{<span style="color:#f5f5f5">props.name</span>}&lt/<span class="html-tag-text">h1</span>&gt&semi;
+    } </span>
+
+<span class="highlighted-code">
+    <span class="variable-declaration">const</span> element = <span class="html-tag">&lt<span class="html-tag-text">Welcome</span><span class="variable-declaration"> name</span>=<span class="function-argument">"Sara"</span> /&gt&semi;</span> 
+</span>
+    ReactDOM<span class="function-text">.render</span><span class="html-tag">(
+        <span style="color:#f5f5f5">element</span>,
+        <span style="color:#f5f5f5">document</span>.<span class="function-text"getElementById></span>(<span class="function-argument">'root'</span>)
+    )&semi;</span>
+    </code></pre>
+            <span class="codepen-try"><a class="codepen-try"
+                    href="https://reactjs.org/redirect-to-codepen/components-and-props/rendering-a-component"
+                    target="_blank"> Try
+                    it on CodePen!</a> </span>
+            <p>Let's recap what happens in this example:</p>
+            <ol>
+                <li>We call <code class="darker-yellow-highlighted-text">ReactDOM.render()</code> with the <code
+                        class="darker-yellow-highlighted-text">&ltWelcome name="Sara" /&gt</code> element. </li>
+                <li>React calls the <code class="darker-yellow-highlighted-text">Welcome</code> component with <code
+                        class="darker-yellow-highlighted-text">{name: 'Sara'}</code> as the props.</li>
+                <li>Our <code class="darker-yellow-highlighted-text">Welcome</code> component returns a <code
+                        class="darker-yellow-highlighted-text"> &lth1&gtHello, Sara&lt/h1&gt</code> element as the
+                    result.</li>
+                <li>React DOM efficiently updates the DOM to match <code
+                        class="darker-yellow-highlighted-text">&lth1&gtHello, Sara&lt/h1&gt.</code></li>
+            </ol>
+            <blockquote class="warning-box">
+                <h2>Note: Always start component names with a capital letter.</h2>
+                <p>React treats components starting with lowercase letters as DOM tags. For example, <code
+                        class="darker-yellow-highlighted-text">&ltdiv /&gt</code> represents an HTML div tag, but <code
+                        class="darker-yellow-highlighted-text">&ltWelcome /&gt</code> represents a component and
+                    requires <code class="darker-yellow-highlighted-text">Welcome</code> to be in scope.</p>
+                <p>To learn more about the reasoning behind this convention, please read <a
+                        class="gray-highlighted-text" target="_blank"
+                        href="https://reactjs.org/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized">JSX
+                        In Depth</a></p>
+
+            </blockquote>
+            <hr>
+            <h2>Composing Components</h2>
+            <p>Components can refer to other components in their output. This lets us use the same component abstraction
+                for any level of detail. A button, a form, a dialog, a screen: in React apps, all those are commonly
+                expressed as components.</p>
+            <p>For example, we can create an <code class="darker-yellow-highlighted-text">App</code> component that
+                renders <code class="darker-yellow-highlighted-text">Welcome</code> many times:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">function</span><span class="function-text"> Welcome</span><span class="html-tag">(<span style="color:#f5f5f5">props</span>) { </span></span>
+        <span class="variable-declaration">return </span><span class="html-tag">&lt<span class="html-tag-text">h1</span>&gt<span style="color:#f5f5f5">Hello,</span>{<span style="color:#f5f5f5">props.name</span>}&lt/<span class="html-tag-text">h1</span>&gt&semi;
+    } </span>
+
+    <span class="variable-declaration">function </span><span class="function-text">App</span><span class="html-tag">() {
+        <span class="html-tag-text">return </span>(
+            &lt<span class="html-tag-text">div</span>&gt
+            <span class="highlighted-code">
+                &lt<span class="html-tag-text">Welcome </span><span class="variable-declaration">name</span>="<span class="function-argument">Sara</span> "/&gt
+                &lt<span class="html-tag-text">Welcome </span><span class="variable-declaration">name</span>="<span class="function-argument">Cahal</span> "/&gt     
+                &lt<span class="html-tag-text">Welcome </span><span class="variable-declaration">name</span>="<span class="function-argument">Edite</span> "/&gt</span>
+            &lt/<span class="html-tag-text">div</span>&gt
+        )&semi;
+    }
+    </span>
+    ReactDOM<span class="function-text">.render</span><span class="html-tag">(
+        &lt<span class="html-tag-text">App </span>/&gt,
+        <span style="color:#f5f5f5">document</span><span class="function-text">.getElementById</span>(<span class="function-argument">'root'</span>)
+    )&semi;</span>
+            </code></pre>
+            <span class="codepen-try"><a class="codepen-try"
+                    href="https://reactjs.org/redirect-to-codepen/components-and-props/composing-components"
+                    target="_blank"> Try
+                    it on CodePen!</a> </span>
+            <p>Typically, new React apps have a single <code class="darker-yellow-highlighted-text">App</code> component
+                at the very top. However, if you integrate React into an existing app, you might start bottom-up with a
+                small component like <code class="darker-yellow-highlighted-text">Button</code> and gradually work your
+                way to the top of the view hierarchy.</p>
+            <hr>
+            <h2>Extracting Components</h2>
+            <p>Don't be afraid to split components into smaller components.</p>
+            <p>For example, consider this <code class="darker-yellow-highlighted-text">Component</code> component:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">function </span><span class="function-text">Comment</span><span class="html-tag">(<span style="color:#f5f5f5">props</span>) {
+        <span class="variable-declaration">return</span>(
+            &lt<span class="html-tag-text">div </span><span class="variable-declaration">className</span>="<span class="function-argument">Comment</span>"&gt
+                &lt<span class="html-tag-text">div </span><span class="variable-declaration">className</span>="<span class="function-argument">UserInfo</span>"&gt
+                    &lt<span class="html-tag-text">img </span><span class="variable-declaration">className</span>="<span class="function-argument">Avatar</span>"
+                        <span class="variable-declaration">src</span>={<span class="html-tag-text">props.author.avatarUrl</span>}
+                        <span class="variable-declaration">alt</span>={<span class="html-tag-text">props.author.name</span>}
+                    /&gt
+                &lt<span class="html-tag-text">div </span><span class="variable-declaration">className</span>="<span class="function-argument">UserInfo-name</span>"&gt
+                    {<span style="color:#f5f5f5">props.author.name</span>}
+                &lt/<span class="html-tag-text">div</span>&gt
+                &lt/<span class="html-tag-text">div</span>&gt
+                &lt<span class="html-tag-text">div </span><span class="variable-declaration">className</span>="<span class="function-argument">Comment-text</span>"&gt
+                    {<span style="color:#f5f5f5">props.text</span>}
+                &lt/<span class="html-tag-text">div</span>&gt
+                &lt<span class="html-tag-text">div </span><span class="variable-declaration">className</span>="<span class="function-argument">Comment-date</span>"&gt
+                    {<span class="function-text">formatDate</span>(<span style="color:#f5f5f5">props.date</span>)}
+                &lt/<span class="html-tag-text">div</span>&gt
+            &lt/<span class="html-tag-text">div</span>&gt
+        )&semi;
+    }</span>
+            </code></pre>
+            <span class="codepen-try"><a class="codepen-try"
+                    href="https://reactjs.org/redirect-to-codepen/components-and-props/extracting-components"
+                    target="_blank"> Try
+                    it on CodePen!</a> </span>
+            <p>It accepts <code class="darker-yellow-highlighted-text">author</code> (an object) <code
+                    class="darker-yellow-highlighted-text">text</code> (a string), and <code
+                    class="darker-yellow-highlighted-text">date</code> (a date) as props, and describes a comment on a
+                social media website.</p>
+            <p>This component can be tricky to change because of all the nesting, and it is also hard to reuse
+                individual parts of it. Let's extract a few components from it.</p>
+
+            <p>First, we will extract <code class="darker-yellow-highlighted-text">Avatar</code>:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">function </span><span class="function-text">Avatar</span><span class="html-tag">(<span style="color: #f5f5f5">props</span>) {
+        <span class="variable-declaration">return</span> (
+        <span class="highlighted-code">
+            &lt<span class="html-tag-text">img </span><span class="variable-declaration">className</span>="<span class="function-argument">Avatar</span>"
+                <span class="variable-declaration">src</span>={<span style="color:#f5f5f5">props.user.avatarUrl</span>}
+                <span class="variable-declaration">alt</span>={<span style="color:#f5f5f5">props.user.name</span>}
+            /&gt</span>
+        )&semi;
+    }</span>
+            </code></pre>
+            <p>The <code class="darker-yellow-highlighted-text">Avatar</code> doesn't need to know that it's being
+                rendered inside a <code class="darker-yellow-highlighted-text">Comment.</code> This is why we have given
+                its prop a more generic name: <code class="darker-yellow-highlighted-text">user</code> rather than <code
+                    class="darker-yellow-highlighted-text">author.</code></p>
+            <p>We recommend naming props from the component's own point of view rather than the context in which it is
+                being used. </p>
+            <p>We can now simplify <code class="darker-yellow-highlighted-text">Comment </code>a tiny bit:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">function </span><span class="function-text">Comment</span><span class="html-tag">(<span style="color:#f5f5f5">props</span>) {
+        <span class="variable-declaration">return</span>(
+            &lt<span class="html-tag-text">div </span><span class="variable-declaration">className</span>="<span class="function-argument">Comment</span>"&gt
+                &lt<span class="html-tag-text">div </span><span class="variable-declaration">className</span>="<span class="function-argument">UserInfo</span>"&gt
+                    <span class="highlighted-code">
+                    &lt<span class="html-tag-text">Avatar </span><span class="variable-declaration">user</span>={<span class="html-tag-text">props.author</span>}/&gt</span>
+                    &lt<span class="html-tag-text">div </span><span class="variable-declaration">className</span>="<span class="function-argument">UserInfo-name</span>"&gt
+                        {<span style="color:#f5f5f5">props.author.name</span>}
+                    &lt/<span class="html-tag-text">div</span>&gt
+                &lt/<span class="html-tag-text">div</span>&gt
+                &lt<span class="html-tag-text">div </span><span class="variable-declaration">className</span>="<span class="function-argument">Comment-text</span>"&gt
+                    {<span style="color:#f5f5f5">props.text</span>}
+                &lt/<span class="html-tag-text">div</span>&gt
+                &lt<span class="html-tag-text">div </span><span class="variable-declaration">className</span>="<span class="function-argument">Comment-date</span>"&gt
+                    {<span class="function-text">formatDate</span>(<span style="color:#f5f5f5">props.date</span>)}
+                &lt/<span class="html-tag-text">div</span>&gt
+            &lt/<span class="html-tag-text">div</span>&gt
+        )&semi;
+    }</span>
+            </code></pre>
+            <p>Next, we will extract a <code class="darker-yellow-highlighted-text">UserInfo</code> component that
+                renders an <code class="darker-yellow-highlighted-text">Avatar</code> next to the user's name:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">function </span><span class="function-text">UserInfo</span><span class="html-tag">(<span style="color:#f5f5f5">props</span>){
+        <span class="variable-declaration">return </span>(
+        <span class="highlighted-code">
+            &lt<span class="html-tag-text">div </span><span class="variable-declaration">className</span>="<span class="function-argument">UserInfo</span>"&gt
+                &lt<span class="html-tag-text">Avatar</span><span class="variable-declaration">user</span>={<span class="html-tag-text">props.user</span>}/&gt
+                &lt<span class="html-tag-text">div </span><span class="variable-declaration">className</span>="<span class="function-argument">UserInfo-name</span>"&gt
+                    {<span style="color:#f5f5f5">props.user.name</span>}
+                &lt/<span class="html-tag-text">div</span>&gt
+            &lt/<span class="html-tag-text">div</span>&gt</span>
+        )&semi;
+    }</span>
+    </code></pre>
+            <p>This lets us simplify <code class="darker-yellow-highlighted-text">Comment</code> even further:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">function </span><span class="function-text">Comment</span><span class="html-tag">(<span style="color:#f5f5f5">props</span>) {
+        <span class="variable-declaration">return</span>(
+            &lt<span class="html-tag-text">div </span><span class="variable-declaration">className</span>="<span class="function-argument">Comment</span>"&gt
+        <span class="highlighted-code">
+                &lt<span class="html-tag-text">UserInfo </span><span class="variable-declaration">user</span>={<span class="html-tag-text">props.author</span>}/&gt</span>
+                &lt<span class="html-tag-text">div </span><span class="variable-declaration">className</span>="<span class="function-argument">Comment-text</span>"&gt
+                    {<span style="color:#f5f5f5">props.text</span>}
+                &lt/<span class="html-tag-text">div</span>&gt
+                &lt<span class="html-tag-text">div </span><span class="variable-declaration">className</span>="<span class="function-argument">Comment-date</span>"&gt
+                    {<span class="function-text">formatDate</span>(<span style="color:#f5f5f5">props.date</span>)}
+                &lt/<span class="html-tag-text">div</span>&gt
+            &lt/<span class="html-tag-text">div</span>&gt
+        )&semi;
+    }</span>
+            </code></pre>
+            <span class="codepen-try"><a class="codepen-try"
+                    href="https://reactjs.org/redirect-to-codepen/components-and-props/extracting-components-continued"
+                    target="_blank"> Try
+                    it on CodePen!</a> </span>
+            <p>Extracting components might seem like grunt work at first, but having a palette of reusable components
+                pays off in larger apps. A good rule of thumb is that if part of your UI is used several times (<code
+                    class="darker-yellow-highlighted-text">Button, Panel, Avatar</code>), or is complex enough on its
+                own (<code class="darker-yellow-highlighted-text">App, FeedStory, Comment</code>), it is a good
+                candidate to be a reusable component</p>
+            <hr>
+            <h2>Props are Read-Only</h2>
+            <p>Whether you declare a component <span class="gray-highlighted-text">as a function or a class</span>, it
+                must never modify its own props. Consider this <code class="darker-yellow-highlighted-text">sum</code>
+                function:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">function </span><span class="function-text">sum</span><span class="html-tag">(<span style="color:#f5f5f5">a, b</span>){
+        <span class="variable-declaration">return</span><span style="color:#f5f5f5"> a + b</span>&semi;
+    }</span>
+                </code></pre>
+            <p>Such functions are called <span class="gray-highlighted-text">"pure"</span> because they do not attempt
+                to change their inputs, and always return the same result for the same inputs.</p>
+            <p>In contrast, this function is impure because it changes its own input:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">function </span><span class="function-text">withdraw</span><span class="html-tag">(<span style="color:#f5f5f5">account, amount</span>){
+        <span style="color:#f5f5f5">account.total -= amount</span>&semi;
+    }</span>
+            </code></pre>
+            <p>React is pretty flexible but it has a single strict rule:</p>
+            <p><strong>All React components must act like pure functions with respect to their props.</strong></p>
+            <p>Of course, application UIs are dynamic and change over time. Next we will introduce a new concept of
+                "state". State allows React components to change their output over time in response to user actions,
+                network responses, and anything else, without violating this rule.</p>
+        </section>
+        <section class="main-section" id="state_and_lifecycle">
+            <header>State and Lifecycle</header>
+            <h4>This section introduces the concept of state and lifecycle in a React component. You can find a <a
+                    target="_blank" class="gray-highlighted-text" href="https://reactjs.org/docs/react-component.html">
+                    detailed component API reference here.</a></h4>
+            <p>Consider the ticking time clock example from before. In the <a class="gray-highlighted-text"
+                    target="_blank" href="#rendering_elements">rendering elements section</a> we have only learned one
+                way to update the UI. We call <code class="darker-yellow-highlighted-text">ReactDOM.render()</code> to
+                change the rendered output:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">function </span><span class="function-text">tick</span><span class="html-tag">() {
+        <span class="variable-declaration">const </span><span style="color:#f5f5f5">element = </span> (
+            &lt<span class="html-tag-text">div</span>&gt
+                &lt<span class="html-tag-text">h1</span>&gt<span style="color:#f5f5f5">Hello, world!</span>&lt/<span class="html-tag-text">h1</span>&gt
+                &lt<span class="html-tag-text">h2</span>&gt<span style="color:#f5f5f5">It is </span>{<span class="variable-declaration">new </span><span class="react-class">Date</span>().<span class="function-text">toLocaleTimeString</span>()}.&lt/<span class="html-tag-text">h2</span>&gt
+            &lt/<span class="html-tag-text">div</span>&gt
+        )&semi;
+    <span class="highlighted-code">
+        <span style="color:#f5f5f5">ReactDOM</span>.<span class="function-text">render</span>(
+            <span style="color:#f5f5f5">element,
+            document</span>.<span class="function-text">getElementById</span>(<span class="function-argument">'root'</span>)
+        )&semi;</span>
+    }</span>
+    
+    <span class="function-text">setInterval</span><span class="html-tag">(<span style="color:#f5f5f5">tick</span>, <span class="function-text">1000</span>)&semi;</span>
+                </code></pre>
+            <span class="codepen-try"><a class="codepen-try" href="https://codepen.io/gaearon/pen/gwoJZk?editors=0010"
+                    target="_blank"> Try
+                    it on CodePen!</a> </span>
+            <p>In this section, we will learn how to make the <code class="darker-yellow-highlighted-text">Clock</code>
+                component truly reusable and encapsulated. It will set up its own timer and update itself every second.
+            </p>
+            <p>We can start by encapsulating how the clock looks:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">function </span><span class="function-text">Clock</span><span class="html-tag">(<span style="color:#f5f5f5">props</span>){
+        <span class="variable-declaration">return </span>(
+    <span class="highlighted-code">
+        &lt<span class="html-tag-text">div</span>&gt
+            &lt<span class="html-tag-text">h1</span>&gt<span style="color:#f5f5f5">Hello, world!</span>&lt/<span class="html-tag-text">h1</span>&gt 
+            &lt<span class="html-tag-text">h2</span>&gt <span style="color:#f5f5f5">It is</span>{<span style="color:#f5f5f5">props.date.</span><span class="function-text">toLocaleTimeString</span>()}.&lt/<span class="html-tag-text">h2</span>&gt 
+        &lt/<span class="html-tag-text">div</span>&gt</span>
+        )&semi;
+    }</span>
+
+    <span class="variable-declaration">function </span><span class="function-text">tick</span><span class="html-tag">(){
+        <span style="color:#f5f5f5">ReactDOM.</span><span class='function-text'>render</span>(
+            &lt<span class="html-tag-text">Clock </span><span class="variable-declaration">date</span>={<span class="variable-declaration">new </span><span class="react-class">Date</span>()} /&gt,
+            <span style="color:#f5f5f5">document</span><span class="function-text">.getElementById</span>(<span class="function-argument">'root'</span>)
+        )&semi;
+    }</span>
+
+    <span class="function-text">setInterval</span><span class="html-tag">(<span style="color:#f5f5f5">tick</span>, <span class="function-text">1000</span>)&semi;</span>
+            </code></pre>
+            <span class="codepen-try"><a class="codepen-try" href="https://codepen.io/gaearon/pen/dpdoYR?editors=0010"
+                    target="_blank"> Try
+                    it on CodePen!</a> </span>
+            <p>However, it misses a crucial requirement: the fact that the <code
+                    class="darker-yellow-highlighted-text">Clock</code> sets up a timer and updates the UI every second
+                should be an implementation detail of the <code class="darker-yellow-highlighted-text">Clock.</code></p>
+            <p>Ideally we want to write this once and have the <code
+                    class="darker-yellow-highlighted-text">Clock </code>update itself:</p>
+            <pre class="code-wrapper"><code>
+    ReactDOM.<span class="function-text">render</span><span class="html-tag">(
+        <span class="highlighted-code">
+            &lt<span class="html-tag-text">Clock </span> /&gt,</span>
+        <span style="color:#f5f5f5">document</span><span class="function-text">.getElementById</span>(<span class="function-argument">'root'</span>)
+        )&semi;</span>
+            </code></pre>
+            <p>To implement this, we need to add "state" to the <code
+                    class="darker-yellow-highlighted-text">Clock </code>component.</p>
+            <p>State is similar to props, but it is private and fully controlled by the component.</p>
+            <p>We mentioned before that components defined as classes have some additional features.<br>
+                Local state is exactly that: a feature only available to classes.</p>
+            <hr>
+            <h2>Converting a Function to a Class</h2>
+            <p>You can convert a function component like <code class="darker-yellow-highlighted-text">Clock</code> to a
+                class in five steps:</p>
+            <ol>
+                <li>Creat an <a target="_blank" class="gray-highlighted-text"
+                        href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes">ES6 class</a>,
+                    with the same name, that extends <code
+                        class="darker-yellow-highlighted-text">React.Component.</code></li>
+                <li>Add a single empty method to it and call it <code
+                        class="darker-yellow-highlighted-text">render().</code></li>
+                <li>Move the body of the function into the <code class="darker-yellow-highlighted-text">render()</code>
+                    method.</li>
+                <li>Replace <code class="darker-yellow-highlighted-text">props</code> with <code
+                        class="darker-yellow-highlighted-text">this.props</code> in the <code
+                        class="darker-yellow-highlighted-text">render()</code> body.</li>
+                <li>Delete the remaining empty function declaration.</li>
+            </ol>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">class <span class="react-class">Clock</span> extends </span><span class="react-class">React.Component </span><span class="html-tag">{
+        <span class="function-text">render</span>(){
+            &lt<span class="html-tag-text">div</span>&gt
+                &lt<span class="html-tag-text">h1</span>&gt<span style="color:#f5f5f5">Hello, world!</span>&lt/<span class="html-tag-text">h1</span>&gt 
+                &lt<span class="html-tag-text">h2</span>&gt <span style="color:#f5f5f5">It is</span>{<span class="variable-declaration">this</span><span style="color:#f5f5f5">.props.date.</span><span class="function-text">toLocaleTimeString</span>()}.&lt/<span class="html-tag-text">h2</span>&gt 
+            &lt/<span class="html-tag-text">div</span>&gt
+            )&semi;
+        } 
+    }</span>
+            </code></pre>
+            <span class="codepen-try"><a class="codepen-try" href="https://codepen.io/gaearon/pen/zKRGpo?editors=0010"
+                    target="_blank"> Try
+                    it on CodePen!</a> </span>
+            <p><code class="darker-yellow-highlighted-text">Clock</code> is now defined as a class rather than a
+                function.</p>
+            <p>The <code class="darker-yellow-highlighted-text">render</code> method will be called each time an update
+                happens, but as long as we render <code class="darker-yellow-highlighted-text">&ltClock /&gt</code> into
+                the same DOM node, only a single instance of <code class="darker-yellow-highlighted-text">Clock</code>
+                class will be used. <br> This lets us use additional features such as local state and lifecycle methods.
+            </p>
+            <hr>
+            <h2>Adding Local State to a Class</h2>
+            <p>We will move the <code class="darker-yellow-highlighted-text">date</code> from props to state in three
+                steps:</p>
+            <ol>
+                <li>
+                    Replace <code class="darker-yellow-highlighted-text"> this.props.date</code> with <code
+                        class="darker-yellow-highlighted-text">this.state.date</code> in the <code
+                        class="darker-yellow-highlighted-text">render</code> method:
+                    <pre class="code-wrapper"><code>
+    <span class="variable-declaration">class <span class="react-class">Clock</span> extends</span><span class="react-class"> React.Component </span><span class="html-tag">{
+        <span class="function-text">render</span>()
+            <span class="variable-declaration">return</span> (
+                &lt<span class="html-tag-text">div</span>&gt
+                    &lt<span class="html-tag-text">h1</span>&gt<span style="color:#f5f5f5">Hello, world!</span>&lt/<span class="html-tag-text">h1</span>&gt
+                <span class="highlighted-code">
+                    &lt<span class="html-tag-text">h2</span>&gt<span style="color:#f5f5f5">It is </span>{<span class="variable-declaration">this</span><span style="color:#f5f5f5">.state.date.</span><span class="function-text">toLocaleTimeString</span>()}.&lt/<span class="html-tag-text">h2</span>&gt</span>
+                &lt/<span class="html-tag-text">div</span>&gt
+            )&semi;
+        }
+    }</span>
+            </code></pre>
+                </li>
+                <li>
+                    Add a <a target="_blank" class="gray-highlighted-text"
+                        href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor">class
+                        constructor</a> that assigns the initial <code
+                        class="darker-yellow-highlighted-text">this.state</code>:
+                    <pre class="code-wrapper"><code>
+    <span class="variable-declaration">class <span class="react-class">Clock</span> extends</span><span class="react-class"> React.Component </span><span class="html-tag">{
+        <span class="function-text">constructor</span>(<span style="color:#f5f5f5">props</span>){
+            <span class="variable-declaration">super</span>(<span style="color:#f5f5f5">props</span>)&semi;
+            <span class="highlighted-code">
+                <span class="variable-declaration">this</span>.<span style="color:#f5f5f5">state =</span> { <span style="color:#f5f5f5">date</span>: <span class="variable-declaration">new </span><span class="react-class">Date</span>()}&semi;</span>
+        }
+        <span class="function-text">render</span>()
+            <span class="variable-declaration">return</span> (
+                &lt<span class="html-tag-text">div</span>&gt
+                    &lt<span class="html-tag-text">h1</span>&gt<span style="color:#f5f5f5">Hello, world!</span>&lt/<span class="html-tag-text">h1</span>&gt
+                    &lt<span class="html-tag-text">h2</span>&gt<span style="color:#f5f5f5">It is </span>{<span class="variable-declaration">this</span><span style="color:#f5f5f5">.state.date.</span><span class="function-text">toLocaleTimeString</span>()}.&lt/<span class="html-tag-text">h2</span>&gt
+                &lt/<span class="html-tag-text">div</span>&gt
+            )&semi;
+        }
+    }</span>
+                    </code></pre>
+                </li>
+                <p>Note how we pass <code class="darker-yellow-highlighted-text">props</code> to the base constructor:
+                </p>
+                <pre class="code-wrapper"><code>
+    <span class="function-text">constructor</span>(<span style="color:#f5f5f5">props</span>){
+        <span class="highlighted-code">
+        <span class="variable-declaration">super</span>(<span style="color:#f5f5f5">props</span>)&semi;</span>
+            <span class="variable-declaration">this</span>.<span style="color:#f5f5f5">state =</span> { <span style="color:#f5f5f5">date</span>: <span class="variable-declaration">new </span><span class="react-class">Date</span>()}&semi;
+    }
+                </code></pre>
+                <p>Class components should always call the base constructor with <code
+                        class="darker-yellow-highlighted-text">props</code></p>
+            </ol>
+            <li>Remove the <code class="darker-yellow-highlighted-text">date</code> prop from the <code
+                    class="darker-yellow-highlighted-text">&ltClock /&gt</code>element:
+                <pre class="code-wrapper"><code>
+    ReactDOM.<span class="function-text">render</span><span class="html-tag">(
+        <span class="highlighted-code">
+        &lt<span class="html-tag-text">Clock </span>/&gt,</span>
+        <span style="color:#f5f5f5">document.</span><span class="function-text">getElementById</span>(<span class="function-argument">'root'</span>)
+    )&semi;</span>
+                </code></pre>
+            </li>
+            <p>We will later add the timer code bac k to the component itself.</p>
+            <p>The result looks like this:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">class <span class="react-class">Clock</span> extends</span><span class="react-class"> React.Component </span><span class="html-tag">{
+        <span class="highlighted-code">
+        <span class="function-text">constructor</span>(<span style="color:#f5f5f5">props</span>){
+            <span class="variable-declaration">super</span>(<span style="color:#f5f5f5">props</span>)&semi;
+            <span class="variable-declaration">this</span>.<span style="color:#f5f5f5">state =</span> { <span style="color:#f5f5f5">date</span>: <span class="variable-declaration">new </span><span class="react-class">Date</span>()}&semi;</span>
+        }
+
+        <span class="function-text">render</span>()
+            <span class="variable-declaration">return</span> (
+                &lt<span class="html-tag-text">div</span>&gt
+                    &lt<span class="html-tag-text">h1</span>&gt<span style="color:#f5f5f5">Hello, world!</span>&lt/<span class="html-tag-text">h1</span>&gt
+                    <span class="highlighted-code">
+                    &lt<span class="html-tag-text">h2</span>&gt<span style="color:#f5f5f5">It is </span>{<span class="variable-declaration">this</span><span style="color:#f5f5f5">.state.date.</span><span class="function-text">toLocaleTimeString</span>()}.&lt/<span class="html-tag-text">h2</span>&gt</span>
+                &lt/<span class="html-tag-text">div</span>&gt
+            )&semi;
+        }
+    }</span>
+
+    ReactDOM.<span class="function-text">render</span><span class="html-tag">(
+        <span class="highlighted-code">
+        &lt<span class="html-tag-text">Clock </span>/&gt,</span>
+        <span style="color:#f5f5f5">document.</span><span class="function-text">getElementById</span>(<span class="function-argument">'root'</span>)
+    )&semi;</span>
+                        </code></pre>
+            <span class="codepen-try"><a class="codepen-try" href="https://codepen.io/gaearon/pen/KgQpJd?editors=0010"
+                    target="_blank"> Try
+                    it on CodePen!</a> </span>
+            <p>Next, we'll make the <code class="darker-yellow-highlighted-text">Clock</code> set up its own timer and
+                update itself every second.</p>
+            <hr>
+            <h2>Adding Lifecycle Methods to a Class</h2>
+            <p>In applications with many components, it's very important to free up resources taken by the components
+                when they are destroyed.</p>
+            <p>We want to set up a timer whenever the <code class="darker-yellow-highlighted-text">Clock</code> is
+                rendered to the DOM for the first time. This is called "mounting" in React.</p>
+            <p>We also want to clear that timer whenever the DOM produced by the <code
+                    class="darker-yellow-highlighted-text">Clock</code> is removed. This is called "unmounting" in
+                React.</p>
+            <p>We can declare special methods on the component class to run some code when a component mounts and
+                unmounts:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">class <span class="react-class">Clock</span> extends</span><span class="react-class"> React.Component </span><span class="html-tag">{
+        <span class="function-text">constructor</span>(<span style="color:#f5f5f5">props</span>){
+            <span class="variable-declaration">super</span>(<span style="color:#f5f5f5">props</span>)&semi;
+            <span class="variable-declaration">this</span>.<span style="color:#f5f5f5">state =</span> { <span style="color:#f5f5f5">date</span>: <span class="variable-declaration">new </span><span class="react-class">Date</span>()}&semi;
+        }</span>
+
+        <span class="highlighted-code">
+        <span class="function-text">componentDidMount</span><span class="html-tag">(){
+                
+        }</span></span>
+
+        <span class="highlighted-code">
+        <span class="function-text">componentWillUnmount</span><span class="html-tag">(){
+                    
+        }</span></span>
+
+    <span class="function-text">render</span><span class="html-tag">()
+        <span class="variable-declaration">return</span> (
+            &lt<span class="html-tag-text">div</span>&gt
+                &lt<span class="html-tag-text">h1</span>&gt<span style="color:#f5f5f5">Hello, world!</span>&lt/<span class="html-tag-text">h1</span>&gt
+                &lt<span class="html-tag-text">h2</span>&gt<span style="color:#f5f5f5">It is </span>{<span class="variable-declaration">this</span><span style="color:#f5f5f5">.state.date.</span><span class="function-text">toLocaleTimeString</span>()}.&lt/<span class="html-tag-text">h2</span>&gt
+            &lt/<span class="html-tag-text">div</span>&gt
+            )&semi;
+        }      
+    }</span>
+                </code></pre>
+            <p>These methods are called "lifecycle methods".</p>
+            <p>The <code class="darker-yellow-highlighted-text">componendDidMount()</code> method runs after the
+                component output has been rendered to the DOM. This is a good place to set up a timer:</p>
+            <pre class="code-wrapper"><code>
+    <span class="function-text">componentDidMount</span><span class="html-tag">(){
+        <span class="highlighted-code">
+        <span class="variable-declaration">this</span>.<span style="color:#f5f5f5">timerID = </span><span class="function-text">setInterval</span>(
+            ()<span style="color:#f5f5f5"> => </span><span class="variable-declaration">this</span><span class="function-text">.tick</span>(),
+            <span class="function-text">1000</span>
+        )&semi;</span>        
+    }</span>
+                </code></pre>
+            <p>Note how we save the timer ID right on <code class="darker-yellow-highlighted-text">this.</code></p>
+            <p>While <code class="darker-yellow-highlighted-text">this.props</code> is set up by React itself and <code
+                    class="darker-yellow-highlighted-text">this.state</code> has a special meaning, you are free to add
+                additional fields to the class manually if you need to store something that doesn't participate in the
+                data flow (like a timer ID).</p>
+            <p>We will tear down the timer in the <code
+                    class="darker-yellow-highlighted-text">componentWillUnmount()</code> lifecycle method:</p>
+            <pre class="code-wrapper"><code>
+    <span class="function-text">componentWillUnmount</span><span class="html-tag">(){
+        <span class="highlighted-code">
+        <span class="function-text">clearInterval</span>(<span class="variable-declaration">this</span>.<span style="color:#f5f5f5">timerID</span>)&semi;</span>
+    }</span>
+        </code></pre>
+            <p>Finally, we will implement a method called <code class="darker-yellow-highlighted-text">tick()</code>
+                that the <code class="darker-yellow-highlighted-text">Clock</code> component will run every second.</p>
+            <p>It will use <code class="darker-yellow-highlighted-text">this.setState()</code> to schedule updates to
+                the component local state:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">class <span class="react-class">Clock</span> extends </span><span class="react-class">React.Component </span><span class="html-tag">{
+        <span class="function-text">constructor</span>(<span style="color:#f5f5f5">props</span>){
+            <span class="variable-declaration">super</span>(<span style="color:#f5f5f5">props</span>)&semi;
+            <span class="variable-declaration">this</span>.<span style="color:#f5f5f5">state =</span> { <span style="color:#f5f5f5">date</span>: <span class="variable-declaration">new </span><span class="react-class">Date</span>()}&semi;
+    }
+
+    <span class="function-text">componentDidMount</span><span class="html-tag">(){
+        <span class="variable-declaration">this</span>.<span style="color:#f5f5f5">timerID = </span><span class="function-text">setInterval</span>(
+        ()<span style="color:#f5f5f5"> => </span><span class="variable-declaration">this</span><span class="function-text">.tick</span>(),                    
+        <span class="function-text">1000</span>
+    )&semi; 
+
+    <span class="function-text">componentWillUnmount</span><span class="html-tag">(){
+        <span class="function-text">clearInterval</span>(<span class="variable-declaration">this</span>.<span style="color:#f5f5f5">timerID</span>)&semi;
+    }</span>
+
+    <span class="highlighted-code">
+    <span class="function-text">tick</span><span class="html-tag">(){
+        <span class="variable-declaration">this</span><span class="function-text">.setState</span>({
+            <span style="color:#f5f5f5">date</span>: <span class="variable-declaration">new</span><span class="react-class"> Date</span>()
+        })&semi;
+    }</span></span>
+
+    <span class="function-text">render</span><span class="html-tag">()
+        <span class="variable-declaration">return</span> (
+            &lt<span class="html-tag-text">div</span>&gt
+                &lt<span class="html-tag-text">h1</span>&gt<span style="color:#f5f5f5">Hello, world!</span>&lt/<span class="html-tag-text">h1</span>&gt
+                &lt<span class="html-tag-text">h2</span>&gt<span style="color:#f5f5f5">It is </span>{<span class="variable-declaration">this</span><span style="color:#f5f5f5">.state.date.</span><span class="function-text">toLocaleTimeString</span>()}.&lt/<span class="html-tag-text">h2</span>&gt
+            &lt/<span class="html-tag-text">div</span>&gt
+            )&semi;
+        }
+    }</span>
+    
+    <span style="color:#f5f5f5">ReactDOM</span><span class="function-text">.render</span><span class="html-tag">(
+        &lt<span class="html-tag-text">Clock </span>/&gt,
+        <span style="color:#f5f5f5">document.</span><span class="function-text">getElementById</span>(<span class="function-argument">'root'</span>)
+    )&semi;</span>
+                </code></pre>
+            <span class="codepen-try"><a class="codepen-try" href="https://codepen.io/gaearon/pen/amqdNA?editors=0010"
+                    target="_blank"> Try
+                    it on CodePen!</a> </span>
+            <p>Now the clock ticks every second.</p>
+            <p>Let's quickly recap what's going on and the order in which the methods are called:</p>
+            <ol>
+                <li>When <code class="darker-yellow-highlighted-text">&ltClock /&gt</code> is passed to <code
+                        class="darker-yellow-highlighted-text">ReactDOM.render()</code>, React calls the constructor of
+                    the <code class="darker-yellow-highlighted-text">Clock</code> component. Since <code
+                        class="darker-yellow-highlighted-text">Clock</code> needs to display the current time, it
+                    initializes <code class="darker-yellow-highlighted-text">this.state</code> with an object including
+                    the current time. We we later update this state.</li>
+                <li>React then calls the <code class="darker-yellow-highlighted-text">Clock</code> component's <code
+                        class="darker-yellow-highlighted-text">render()</code> method. This is how React learns what
+                    should be displayed on the screen. React then updates the DOM to match the <code
+                        class="darker-yellow-highlighted-text">Clock</code> 's render output.</li>
+                <li>When the <code class="darker-yellow-highlighted-text">Clock</code> output is inserted in the DOM,
+                    React calls <code class="darker-yellow-highlighted-text">componentDidMount()</code> lifecycle
+                    method. Inside it, <code class="darker-yellow-highlighted-text">Clock</code> component asks the
+                    browser to set up a timer to call the component's <code
+                        class="darker-yellow-highlighted-text">tick()</code> method once a second.</li>
+                <li>Every second the browser calls the <code class="darker-yellow-highlighted-text">tick()</code>
+                    method. Inside it, the <code class="darker-yellow-highlighted-text">Clock</code> component schedules
+                    a UI update by calling <code class="darker-yellow-highlighted-text">setState()</code> with an object
+                    containing the current time. Thanks to the <code
+                        class="darker-yellow-highlighted-text">setState()</code> call, React knows the state has
+                    changed, and calls the <code class="darker-yellow-highlighted-text">render()</code> method again to
+                    learn what should be on the screen. This time, <code
+                        class="darker-yellow-highlighted-text">this.state.date</code> in the <code
+                        class="darker-yellow-highlighted-text">render()</code> method will be different, and so the
+                    render output will include the updated time. React updates the DOM accordingly.
+                </li>
+                <li>If the <code class="darker-yellow-highlighted-text">Clock</code> component is ever removed from the
+                    DOM, React calls the <code class="darker-yellow-highlighted-text">componentWillUnmount()</code>
+                    lifecycle method so the time is stopped.</li>
+            </ol>
+            <hr>
+            <h2>Using State Correctly</h2>
+            <p>There are three things you should know about <code
+                    class="darker-yellow-highlighted-text">setState()</code>.</p>
+            <h3>Do Not Modify State Directly</h3>
+            <p>For example, this will not re-render a component:</p>
+            <pre class="code-wrapper"><code>
+    <span class="react-comment">// Wrong</span>
+    <span class="variable-declaration">this</span>.state.comment = <span class="function-argument">'Hello</span>&semi;
+            </code></pre>
+            <p>Instead, use <code class="darker-yellow-highlighted-text">setState()</code></p>
+            <pre class="code-wrapper"><code>
+    <span class="react-comment">// Correct</span>
+    <span class="variable-declaration">this</span><span class="function-text">.setState</span><span class="html-tag">({<span style="color:#f5f5f5">comment</span>:<span class="function-argument">'Hello'</span>})&semi;</span>
+            </code></pre>
+            <p>The only place where you can assign <code class="darker-yellow-highlighted-text">this.state</code> is the
+                constructor.</p>
+            <h3>State Updates May Be Asynchronous</h3>
+            <p>React may batch multiple <code class="darker-yellow-highlighted-text">setState()</code> calls into a
+                single update for performance.</p>
+            <p>Because <code class="darker-yellow-highlighted-text">this.props</code> and <code
+                    class="darker-yellow-highlighted-text">this.state</code> may be updated asynchronously, you should
+                not relay on their values for calculating the next state.</p>
+            <p>For example, this code may fail to update the counter:</p>
+            <pre class="code-wrapper"><code>
+    <span class="react-comment">// Wrong</span>
+    <span class="variable-declaration">this </span><span class="function-text">.setState</span><span class="html-tag">({
+        <span style="color:#f5f5f5">counter</span>: <span class="variable-declaration">this</span><span style="color:#f5f5f5">.state.counter + <span class="variable-declaration">this</span>.props.increment</span>,
+    })&semi;</span>
+            </code></pre>
+            <p>To fix it, use a second <code class="darker-yellow-highlighted-text">setState()</code> that accepts a
+                function rather than an object. That function will receive the previous state as the first argument, and
+                the props at the time the update is applied as the second argument:</p>
+            <pre class="code-wrapper"><code>
+    <span class="react-comment">// Correct</span>
+    <span class="variable-declaration">this</span><span class="function-text">setState</span><span class="html-tag">((<span style="color: #f5f5f5">state, props</span>) <span style="color:#f5f5f5">=> </span>({
+        <span style="color:#f5f5f5">counter: state.counter + props.increment</span>
+    }))&semi;</span>
+        </code></pre>
+            <p>We used an <a target="_blank" class="gray-highlighted-text"
+                    href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions">arrow
+                    function </a> above, but it also works with regular functions:</p>
+            <pre class="code-wrapper"><code>
+    <span class="react-comment">// Correct</span>
+    <span class="variable-declaration">this </span><span class="function-text">setState</span><span class="html-tag">(<span class="variable-declaration">function</span>(<span style="color: #f5f5f5">state, props</span>) {
+        <span class="variable-declaration">return</span> {
+            <span style="color:#f5f5f5">counter: state.counter + props.increment</span>
+        }&semi;
+    })&semi;</span>
+                    </code></pre>
+            <h3>State Updates are Merged</h3>
+            <p>When you call <code class="darker-yellow-highlighted-text">setState()</code>, React merges the object you
+                provide into the current state.</p>
+            <p>For example, your state may contain several independent variables:</p>
+            <pre class="code-wrapper"><code>
+    <span class="function-text">constructor</span><span class="html-tag">(<span style="color:#f5f5f5">props</span>){
+        <span class="variable-declaration">super</span>(<span style="color:#f5f5f5">props</span>)&semi;
+        <span class="variable-declaration">this</span>.<span style="color:#f5f5f5">state = </span>{
+            <span style="color:#f5f5f5">posts</span>: [],
+            <span style="color:#f5f5f5">comments</span>: []
+        }&semi;
+    }</span>
+            </code></pre>
+            <p>Then you can update them independently with separate <code
+                    class="darker-yellow-highlighted-text">setState()</code> calls:</p>
+            <pre class="code-wrapper"><code>
+    <span class="function-text">componentDidMount</span><span class="html-tag">() {
+        <span class="function-text">fetchPosts</span>().<span class="function-text">then</span>(<span style="color:#f5f5f5">response =></span> {
+            <span class="variable-declaration">this</span>.<span class="function-text">setState</span>({
+                <span style="color:#f5f5f5">posts: response.posts</span>
+            })&semi;
+        })&semi;</span>
+
+        <span class="function-text">fetchComments</span>().<span class="function-text">then</span>(<span style="color:#f5f5f5">response =></span> {
+            <span class="variable-declaration">this</span>.<span class="function-text">setState</span>({
+                <span style="color:#f5f5f5">comments: response.comments</span>
+            })&semi;
+        })&semi;
+    }</span>
+        </code></pre>
+            <p>The merging is shallow, so <code class="darker-yellow-highlighted-text">this.setState({comments})</code>
+                leaves <code class="darker-yellow-highlighted-text">this.state.posts</code> intact but completely
+                replaces <code class="darker-yellow-highlighted-text">this.state.comments.</code></p>
+            <hr>
+            <h2>The Data Flows Down</h2>
+            <p>Neither parent not child components can know if a certain component is statefull or stateless, and they
+                shouldn't care whether itis defined as a function or a class.</p>
+            <p>This is why state is often called local or encapsulated. It is not accessible to anhy component other
+                than the one that owns and sets it.</p>
+            <p>A component may choose to pass its state down as props to its child components:</p>
+            <pre class="code-wrapper"><code>
+    <span class="html-tag">&lt<span class="html-tag-text">h2</span>&gt <span style="color:#f5f5f5">It is</span> {<span class="variable-declaration">this</span><span style="color:#f5f5f5">.state.date.</span><span class="function-text">toLocaleTimeString</span>()}.&lt/<span class="html-tag-text">h2</span>&gt</span>
+            </code></pre>
+            <p>This also works for user-defined components:</p>
+            <pre class="code-wrapper"><code>
+    <span class="html-tag">&lt<span class="html-tag-text">FormattedDate</span> <span class="variable-declaration">date</span>={<span class="variable-declaration">this.</span><span class="html-tag-text">state.date</span>} /&gt</span>
+            </code></pre>
+            <p>The <code class="darker-yellow-highlighted-text">FormattedDate</code> component would receive the <code
+                    class="darker-yellow-highlighted-text">date</code> in its props and wouldn't know whether it came
+                from the <code class="darker-yellow-highlighted-text">Clock</code>'s state, from the <code
+                    class="darker-yellow-highlighted-text">Clock</code>'s props, or was typed by hand:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">function </span><span class="function-text">FormattedDate</span><span class="html-tag">(<span style="color:#f5f5f5">props</span>){
+        <span class="variable-declaration">return </span>&lt<span class="html-tag-text">h2</span>&gt <span style="color:#f5f5f5">It is</span> {<span class="variable-declaration">this</span><span style="color:#f5f5f5">.state.date.</span><span class="function-text">toLocaleTimeString</span>()}.&lt/<span class="html-tag-text">h2</span>&gt
+    }</span>
+        </code></pre>
+            <span class="codepen-try"><a class="codepen-try" href="https://codepen.io/gaearon/pen/zKRqNB?editors=0010"
+                    target="_blank"> Try
+                    it on CodePen!</a> </span>
+            <p>This is commonly called a "top-down" or "unidirectional" data flow. Any state is always owned by some
+                specific component, and any data or UI derived from that state can only affect components "below" them
+                in the tree.</p>
+            <p>If you imagine a component tree as a waterfall of props, each component's state is like an additional
+                water source that joins it at an arbitrary point but also flows down. </p>
+            <p>To show that all components are truly isolated, we can create an <code
+                    class="darker-yellow-highlighted-text">App</code> component that renders three <code
+                    class="darker-yellow-highlighted-text">&ltClock&gt</code>s:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">function </span><span class="function-text">App</span><span class="html-tag">() {
+        <span class="variable-declaration">return </span>(
+            &lt<span class="html-tag-text">div</span>&gt
+                &lt<span class="html-tag-text">Clock</span> /&gt
+                &lt<span class="html-tag-text">Clock</span> /&gt
+                &lt<span class="html-tag-text">Clock</span> /&gt
+            &lt/<span class="html-tag-text">div</span>&gt
+        )&semi;
+    }</span>
+
+    ReactDOM<span class="function-text">.render</span><span class="html-tag">(
+        &lt<span class="html-tag-text">App</span> /&gt,
+        <span style="color:#f5f5f5">document</span><span class="function-text">.getElementById</span>(<span class="function-argument">'root'</span>)
+    )&semi;</span>
+                    </code></pre>
+
+            <span class="codepen-try"><a class="codepen-try" href="https://codepen.io/gaearon/pen/vXdGmd?editors=0010"
+                    target="_blank"> Try
+                    it on CodePen!</a> </span>
+            <p>Each <code class="darker-yellow-highlighted-text">Clock</code> sets up its own timer and updates
+                independently.</p>
+            <p>In React apps, whether a component is stateful or stateless is considered an implementation detail of the
+                component that may change over time. You can use stateless components inside stateful components and
+                vice versa.</p>
+        </section>
+        <section class="main-section" id="handling_events">
+            <header>Handling Events</header>
+            <h4>Handling events with React elements is very similar to handling events on DOM elements. There are some
+                syntactic differences:</h4>
+            <ul>
+                <li>React events are named using camelCase, rather than lowercase.</li>
+                <li>With JSX you pass a function as the event handler, rather than a string.</li>
+            </ul>
+            <p>For example, the HTML:</p>
+            <pre class="code-wrapper"><code>
+    <span class="html-tag">&lt<span class="html-tag-text">button</span> <span class="variable-declaration">onclick</span>="<span class="function-argument">activateLasers()</span>"&gt</span>
+        Activate Lasers
+    <span class="html-tag">&lt/<span class="html-tag-text">button</span>&gt</span>            
+    </code></pre>
+            <p>is slightly different in React:</p>
+            <pre class="code-wrapper"><code>
+
+<span class="highlighted-code">
+    <span class="html-tag">&lt<span class="html-tag-text">button </span><span class="variable-declaration">onClick</span>={<span class="html-tag-text">activateLasers</span>}&gt</span></span>
+        Activate Lasers
+    <span class="html-tag">&lt/<span class="html-tag-text">button</span>&gt</span>    
+    </code></pre>
+            <p>Another difference is that you cannot return <code class="darker-yellow-highlighted-text">false</code> to
+                prevent default behavior in React. You must call <code
+                    class="darker-yellow-highlighted-text">preventDefault</code> explicitly. For example, with plain
+                HTML, to prevent the default link behavior of opening a new page you can write:</p>
+            <pre class="code-wrapper"><code>
+    <span class="html-tag">&lt<span class="html-tag-text">a</span> <span class="variable-declaration">href</span>="<span class="function-argument">#</span>" <span class="variable-declaration">onclick</span>="<span class="function-argument">console.log('The link was clicked.')&semi; return false</span>"&gt</span>
+        Click me 
+    <span class="html-tag">&lt/<span class="html-tag-text">a</span>&gt</span>    
+    </code></pre>
+            <p>In React, this could instead be:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">function</span> <span class="function-text">ActionLink</span><span class="html-tag">(){
+        <span class="highlighted-code">
+        <span class="variable-declaration">function</span> <span class="function-text">handleClick</span>(<span style="color:#f5f5f5">e</span>){
+            <span style="color:#f5f5f5">e</span><span class="function-text">.preventDefault</span>()&semi;
+            <span style="color:#f5f5f5">console</span><span class="function-text">.log</span>(<span class="function-argument">'The link was clicked.'</span>)&semi;
+    }</span>    
+
+    <span class="variable-declaration">return</span>(
+        <span class="highlighted-code">
+        <span class="html-tag">&lt<span class="html-tag-text">a</span> <span class="variable-declaration">href</span>="<span class="function-argument">#</span>" <span class="variable-declaration">onclick</span>="<span class="function-argument">console.log('The link was clicked.')&semi; return false</span>"&gt</span></span>
+            Click me 
+        <span class="html-tag">&lt/<span class="html-tag-text">a</span>&gt</span>   
+        )&semi;
+    }</span>
+    </code></pre>
+            <p>Here, <code class="darker-yellow-highlighted-text">e</code> is a synthetic event. React defines these
+                synthetic events according to the <a target="_blank" href="https://www.w3.org/TR/DOM-Level-3-Events/"
+                    class="gray-highlighted-text">W3C spec</a>, so you don't need to worry about cross-browser
+                compatibility. See the <a target="_blank" href="https://reactjs.org/docs/events.html"
+                    class="gray-highlighted-text">SyntheticEvent</a> reference guide to learn more. </p>
+            <p>When using React you should generally not need to call <code
+                    class="darker-yellow-highlighted-text">addEventListener</code> to add listeners to a DOM element
+                after it is created. Instead, just provide a listener when the element is initially rendered.</p>
+            <p>When you define a component using an ES6 class, a common pattern is for an event handler to be a method
+                on the class. For example, this <code class="darker-yellow-highlighted-text">Toggle</code> component
+                renders a button that lets the user toggle between "ON" and "OFF" states:</p>
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">class </span><span class="react-class">Toggle <span class="variable-declaration">extends </span>React.Component</span><span class="html-tag"> {
+        <span class="function-text">constructor</span>(<span style="color:#f5f5f5">props</span>){
+            <span class="variable-declaration">super</span>(<span style="color:#f5f5f5">props</span>)&semi;
+            <span class="variable-declaration">this</span>.<span style="color:#f5f5f5">state</span> = {<span style="color:#f5f5f5">isToggleOn</span>:<span class="var-value">true</span> }&semi;
+
+            <span class="highlighted-code">
+            <span class="react-comment">//This binding is necessary to make 'this' work in the callback</span>
+            <span class="variable-declaration">this</span>.<span style="color:#f5f5f5">handleClick</span> = <span class="variable-declaration">this</span>.<span style="color:#f5f5f5">handleClick</span>.<span class="function-text">bind</span>(<span class="variable-declaration">this</span>)&semi;</span>
+        }
+
+    <span class="highlighted-code">
+        <span class="function-text">handleClick</span>(){
+            <span class="variable-declaration">this</span>.<span class="function-text">setState</span>(<span style="color:#f5f5f5">state => </span>({
+                <span style="color:#f5f5f5">isToggleOn: !state.isToggleOn</span>
+            }))&semi;
+        }</span>
+
+    <span class="function-text">render</span>(){
+        <span class="variable-declaration">return</span>(
+            <span class="highlighted-code">
+            &lt<span class="html-tag-text">button </span><span class="variable-declaration">onClick</span>={<span class="variable-declaration">this</span>.<span class="html-tag-text">handleClick</span>}&gt</span>
+                {<span class="variable-declaration">this<span style="color:#f5f5f5">.state.isToggleOn</span> ? </span><span class="function-argument">'ON' : 'OFF'</span>}
+            &lt/<span class="html-tag-text">button</span>&gt
+            )&semi;
+        }
+    }
+
+    <span style="color:#f5f5f5">ReactDOM</span>.<span class="function-text">render</span>(
+        &lt<span class="html-tag-text">Toggle </span>/&gt,
+        <span style="color:#f5f5f5">document</span>.<span class="function-text">getElementById</span>(<span class="function-argument">'root'</span>)
+    )&semi;</span>
+                </code></pre>
+
+            <span class="codepen-try"><a class="codepen-try" href="https://codepen.io/gaearon/pen/xEmzGg?editors=0010"
+                    target="_blank"> Try
+                    it on CodePen!</a> </span>
+
+            <p>You have to be careful about the meaning of <code class="darker-yellow-highlighted-text">this</code> in
+                JSX callbacks. In JavaScript, class methods are not bound by default. If you forget to bind <code
+                    class="darker-yellow-highlighted-text">this.handleClick</code> and pass it to <code
+                    class="darker-yellow-highlighted-text">onClick, this</code> will be undefined when the function is
+                actually called. </p>
+            <p>This is not React-specific behavior; it is a part of how <a target="_blank" class="gray-highlighted-text"
+                    href="https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/">functions
+                    work in JavaScript</a>. Generally, if you refer to a method without <code
+                    class="darker-yellow-highlighted-text">()</code> after it, such as <code
+                    class="darker-yellow-highlighted-text">onClick={this.handleClick},</code> you should bind that
+                method.</p>
+            <p>If calling <code class="darker-yellow-highlighted-text">bind</code> annoys you, there are two ways you
+                can get around this. If you are using the experimental <a class="gray-highlighted-text" target="_blank"
+                    href="https://babeljs.io/docs/plugins/transform-class-properties/">public class fields syntax</a>,
+                you can use class fields to correctly bind callbacks:</p>
+
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">class</span> <span class="react-class">LogginButton <span class="variable-declaration">extends </spanc>React.Component</span></span><span class="html-tag">{
+        <span class="highlighted-code">
+        <span class="react-comment">//This syntax ensures 'this' is bound within handleClick.
+        //Warning: this is *experimental* syntax.</span>    
+        <span class="function-text">handleClick</span> = () => {
+            <span style="color:#f5f5f5">console</span>.<span class="function-text">log</span>(<span class="function-argument">'this is:'</span>, <span class="variable-declaration">this</span>)&semi;
+        }</span>
+
+    <span class="function-text">render</span>() {
+        <span class="variable-declaration">return</span>(
+            &lt<span class="html-tag-text">button</span> <span class="variable-declaration">onClick</span>={<span class="variable-declaration">this</span>.<span class="html-tag-text">handleClick</span>}&gt
+                <span style="color:#f5f5f5">Click me</span>
+            &lt/<span class="html-tag-text">button</span>&gt
+            )&semi;
+        }
+    }</span>
+        </code></pre>
+            <p>This syntax is enabled by default in <a class="gray-highlighted-text" target="_blank"
+                    href="https://github.com/facebookincubator/create-react-app">Create React App</a></p>
+            <p>If you aren't using class fields syntax, you can use an <a class="gray-highlighted-text" target="_blank"
+                    href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions">
+                    arrow function </a>in the callback:</p>
+
+            <pre class="code-wrapper"><code>
+    <span class="variable-declaration">class </span><span class="react-class">LoggingButton <span class="variable-declaration">extends </span>React.Component</span><span class="html-tag">{
+        <span class="function-text">handleClick</span>(){
+            <span style="color:#f5f5f5">console</span>.<span class="function-text">log</span>(<span class="function-argument">'this is:'</span>, <span class="variable-declaration">this</span>)&semi;
+        }
+
+    <span class="function-text">render</span>(){
+        <span class="highlighted-code">
+        <span class="react-comment">// This syntax ensures 'this' is bound within the handleClick</span>
+        <span class="variable-declaration">return</span> (
+            &lt<span class="html-tag-text">button</span> <span class="variable-declaration">onClick</span>={(<span class="html-tag-text">e</span>) => <span class="variable-declaration">this</span>.<span class="function-text">handleClick</span>(<span class="html-tag-text">e</span>)}&gt</span>
+                <span style="color:#f5f5f5">Click me</span>
+            &lt/<span class="html-tag-text">button</span>&gt
+           )&semi;
+         }
+    }</span>
+    </code></pre>
+            <p>The problem with this syntax is that a different callback is created each time the <code
+                    class="darker-yellow-highlighted-text">LoggingButton</code> renders. In most cases, this is fine.
+                However, if this callback is passed as a prop to lower components, those components might do extra
+                re-rendering. We generally recommend binding in the constructor or using the class fields syntax, to
+                avoid this sort of performance problem.</p>
+            <hr>
+            <h2>Passing Arguments to Event Handlers</h2>
+            <p>Inside a loop it is common to want to pass an extra parameter to an event handler. For example, if <code
+                    class="darker-yellow-highlighted-text">id</code> is the row ID, either of the following would work:
+            </p>
+            <pre class="code-wrapper"><code>
+    <span class="html-tag">&lt<span class="html-tag-text">button</span> <span class="variable-declaration">onClick</span>={(<span class="html-tag-text">e</span>) => <span class="variable-declaration">this</span>.<span class="function-text">deleteRow</span>(<span class="html-tag-text">id, e</span>)}&gt<span style="color:#f5f5f5">Delete Row</span>&lt/<span class="html-tag-text">button</span>&gt</span>
+    <span class="html-tag">&lt<span class="html-tag-text">button</span> <span class="variable-declaration">onClick</span>={<span class="variable-declaration">this</span>.<span class="html-tag-text">deleteRow</span>.<span class="function-text">bind</span>(<span class="variable-declaration">this</span>, <span class="html-tag-text">id</span>)}&gt<span style="color:#f5f5f5">Delete Row</span>&lt/<span class="html-tag-text">button</span>&gt</span>
+            </code></pre>
+
+            <p>The above to lines are equivalent, and use <a class="gray-highlighted-text" target="_blank"
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">arrow
+                    functions</a> and <a class="gray-highlighted-text" target="_blank"
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind">Function.prototype.bind</a>
+                respectively.</p>
+            <p>In both cases, the <code class="darker-yellow-highlighted-text">e</code> argument, representing the React
+                event will be passed as a second argument after the ID. With an arrow function, we hve to pass it
+                explicitly, but with <code class="darker-yellow-highlighted-text">bind</code> any further arguments are
+                automatically forwarded.</p>
+        </section>
+        <section class="main-section" id="conditional_rendering">
+            <header>Conditional Rendring</header>
+        </section>
+        <section class="main-section" id="lists_and_keys">
+            <header>Lists and Keys</header>
+        </section>
+        <section class="main-section" id="forms">
+            <header>Forms</header>
+        </section>
+        <section class="main-section" id="lifting_state_up">
+            <header>Lifting State Up</header>
+        </section>
+        <section class="main-section" id="composition_vs_inheritance">
+            <header>Composition vs Inheritance</header>
+        </section>
+        <section class="main-section" id="thinking_in_react">
+            <header>Thinking In React</header>
+        </section>
+    </main>
+
+</body>
+
+</html>

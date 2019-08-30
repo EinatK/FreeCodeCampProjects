@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1 id="title">This is a form</h1>
+        <p id="description">It comes to check I learned basic HTML5 and CSS3</p>
+    </header>
+    <section class="form">
+        <form id="survey-form">
+            <section class="intro">
+                <div>
+                    <label id="name-label">*Enter your name:</label>
+                    <input name="name" id="name" type="text" placeholder="Enter your name" required>
+                </div>
+                <div>
+                    <label id="email-label">*Enter your Email:</label>
+                    <input name="email" id="email" type="email" placeholder="Enter your email" required>
+                </div>
+                <div>
+                    <label id="number-label">*Enter your Age:</label>
+                    <input name="number" id="number" type="number" placeholder="Enter your age" min="0" max="99"
+                        required>
+                </div>
+            </section>
+            <section class="selections">
+                <div>
+                    <label id="dropdown-label">Select one of the following options:</label>
+                    <select name="dropdownList" id="dropdown">
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3" selected>Option 3</option>
+                        <option value="option4">Option 4</option>
+                        <option value="option5">Option 5</option>
+                    </select>
+                </div>
+                <div>
+                    <!-- The <legend> tag defines a caption for the <fieldset> element. -->
+                    <fieldset>
+                        <legend>Which option fits you best?</legend>
+
+
+                        <div>
+                            <label for="radio-option-1">
+                                <input type="radio" id="radio-option-1" name="radio-options" value="radio-option-1"
+                                    checked />
+                                Radio option 1</label>
+                        </div>
+                        <div>
+                            <label for="radio-option-2">
+                                <input type="radio" id="radio-option-2" name="radio-options" value="radio-option-2" />
+                                Radio option 2</label>
+                        </div>
+                        <div>
+                            <label for="radio-option-3">
+                                <input type="radio" id="radio-option-3" name="radio-options" value="radio-option-3" />
+                                Radio option 3</label>
+                        </div>
+                        <div>
+                            <label for="radio-option-4">
+                                <input type="radio" id="radio-option-4" name="radio-options" value="radio-option-4" />
+                                Radio option 4</label>
+                        </div>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <legend>Check all that apply</legend>
+                        <div>
+                            <input type="checkbox" id="checkbox1" name="checkbox-options" value="checkbox1" />
+                            <label>Checkbox 1</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="checkbox2" name="checkbox-options" value="checkbox2" />
+                            <label>Checkbox 2</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="checkbox3" name="checkbox-options" value="checkbox3" />
+                            <label>Checkbox 3</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="checkbox4" name="checkbox-options" value="checkbox4" />
+                            <label>Checkbox 4</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="checkbox5" name="checkbox-options" value="checkbox5" />
+                            <label>Checkbox 5</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="checkbox6" name="checkbox-options" value="checkbox6" />
+                            <label>Checkbox 6</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="checkbox7" name="checkbox-options" value="checkbox7" />
+                            <label>Checkbox 7</label>
+                        </div>
+                    </fieldset>
+                </div>
+            </section>
+            <section class="openText">
+                <div>
+                    <label for="open-text-area">Add additional comments</label>
+                    <textarea id="open-text-area" name="open-text-area"></textarea>
+                </div>
+            </section>
+            <button type="submit" id="submit" name="submit" value="submit-true">SUBMIT</button>
+        </form>
+    </section>
+</body>
+
+</html>
